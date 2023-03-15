@@ -1,0 +1,37 @@
+{% extends 'insta_app/base.html' %}
+
+{% block content %}
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+    <span>{{ form.non_field_errors }}</span>
+</div>
+
+<form action="{% url 'users:login' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <label> Username:
+            {{ form.username }}
+        </label>
+    </div>
+
+    <div>
+        <label>Password:
+            {{ form.password }}
+        </label>
+    </div>
+
+    <div class="grid">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+    </div>
+</form>
+
+{% endblock  %}

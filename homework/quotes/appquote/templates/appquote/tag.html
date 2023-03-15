@@ -1,0 +1,26 @@
+{% extends "appquote/base.html" %}
+
+
+{% block content %}
+
+<h4>All quotes for tag {{ tag }} </h4>
+<hr>
+
+{% for quote in quotes %}
+{% if tag in quote.show_quote_tags %}
+<div class="card" ,>
+    <div class="card-body">
+        <strong class="author-name">{{ quote.show_quote_author }}</strong>
+        <a href="/author/{{ quote.show_quote_author }}" class="btn btn-primary">More about author</a>
+        <p class="card-text">{{ quote.show_quote_text }}</p>
+        {% for tag in quote.show_quote_tags %}
+        <a href="/tag/{{ tag }}" class="btn btn-primary">|{{ tag }}|</a>
+        {% endfor %}
+        <hr>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}

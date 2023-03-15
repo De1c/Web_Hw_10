@@ -1,0 +1,11 @@
+{% extends "appquote/base.html" %}
+
+{% block content %}
+
+<h4>{{ author.fullname }}</h4>
+Born {{ author.born_date }} {{ author.born_location }}
+<hr>
+<h4>About author</h4>
+{{ author.description }}
+
+{% endblock %}

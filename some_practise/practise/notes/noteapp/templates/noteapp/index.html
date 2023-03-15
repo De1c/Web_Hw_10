@@ -1,0 +1,44 @@
+{% extends "appquote/base.html" %}
+
+{% block content %}
+
+<hr>
+<h2>Top tags</h2>
+
+{% for el in most_popular_tag %}
+<a href="tag/{{ el }}" class="btn btn-primary">|{{ el }}|</a>
+{% endfor %}
+<hr>
+
+<h2>All quotes</h2>
+
+{% for el in page_obj %}
+
+<div class="card" ,>
+    <div class="card-body">
+        <strong class="author-name">{{ el.show_quote_author }}</strong>
+        <a href="author/{{ el.show_quote_author }}" class="btn btn-primary">More about author</a>
+        <p class="card-text">{{ el.show_quote_text }}</p>
+        {% for tag in el.show_quote_tags %}
+        <a href="tag/{{ tag }}" class="btn btn-primary">|{{ tag }}|</a>
+        {% endfor %}
+        <hr>
+    </div>
+</div>
+{% endfor %}
+
+<nav>
+    <ul>
+        {% for p in page_obj.paginator.page_range %}
+        {% if page_obj.number == p %}
+        <li class="page-num page-num-selected">{{ p }}</li>
+        {% else %}
+        <li class="page-num">
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</nav>
+
+{% endblock %}

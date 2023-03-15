@@ -1,0 +1,14 @@
+{% extends "insta_app/base.html"%}
+
+{% block content %}
+<h1>Edit your picture</h1>
+<form action='{% url 'insta_app:edit' picture.id %}' method="post">
+  {% csrf_token %} 
+  <img src="/media/{{picture.path}}" class="card-img-top" alt="...">
+  <div class="mb-3">
+    <label class="form-label">Description</label>
+    <input type="text" class="form-control" value="{{picture.description}}" name="description">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
